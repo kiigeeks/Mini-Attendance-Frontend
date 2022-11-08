@@ -45,7 +45,7 @@ const Home = ({ title }) => {
         
         
         <div className="mt-5">
-          <a href="https://github.com/kiigeeks" className="btn btn-dark">
+          <a href="https://github.com/kiigeeks/Mini-Attendance-Frontend" className="btn btn-dark">
             <div className="d-flex justify-content-center align-items-center">
               <img height="20" width="20" src="/img/icon/github.png" alt="github" className="me-2"/>
               Source Code
