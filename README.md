@@ -6,7 +6,6 @@ Menggunakan :
 1. ReactJS
 2. Axios
 3. React-Bootstrap
-4. 
 
 # Getting Started with Create React App
 
