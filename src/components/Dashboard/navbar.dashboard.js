@@ -10,6 +10,9 @@ const Navbar = ({ title, handleLogout, navigate }) => {
                         <span className="fs-4">{ title }</span>
                     </a>
                     <nav className="d-inline-flex mt-2 mt-md-0 ms-md-auto">
+                        <a href="/" className="me-3 py-2 text-dark text-decoration-none" style={{ cursor: "pointer" }}>
+                            Home
+                        </a>
                         <a href="/profile" className="me-3 py-2 text-dark text-decoration-none" style={{ cursor: "pointer" }}>
                             Profile
                         </a>

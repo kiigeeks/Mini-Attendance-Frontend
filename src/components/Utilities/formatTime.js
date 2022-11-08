@@ -1,5 +1,4 @@
-import React from 'react'
-
+//function untuk format timestamp dari db
 const FormatTime = (data) => {
     const dateFormat= new Date(data)
     const fixTime = ('0'+dateFormat.getDate()).slice(-2)+

@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react"
 import {Button, Container, Form} from "react-bootstrap"
 import { useNavigate, useLocation } from 'react-router-dom'
-import axios from "axios"
 import { SendData } from "../Utilities/customAxios"
 import AutoTyping from "../Utilities/autoTyping"
 import FooterLayouts from "../Layouts/footer.layouts"
@@ -71,7 +70,7 @@ const Login = ({title, desc}) => {
                         </Form.Group>
                         <Form.Group>
                             <Form.Label className="fw-bold">Password</Form.Label>
-                            <Form.Control type="password" placeholder="*****" required onChange={(event) => handlePassword(event.target.value)}/>
+                            <Form.Control type="password" placeholder="*****" minLength="5" required onChange={(event) => handlePassword(event.target.value)}/>
                         </Form.Group>
                         <Button variant="primary" className="mt-3 w-100" type="submit">Login</Button>
                     </Form>

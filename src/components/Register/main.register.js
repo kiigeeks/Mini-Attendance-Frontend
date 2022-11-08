@@ -66,11 +66,11 @@ const Register = ({title, desc}) => {
                         </Form.Group>
                         <Form.Group>
                             <Form.Label className="fw-bold">Nama</Form.Label>
-                            <Form.Control type="text" placeholder="Masukkan Nama Anda" required onChange={(event) => handleNama(event.target.value)}/>
+                            <Form.Control type="text" placeholder="Masukkan Nama Anda" minLength="3" required onChange={(event) => handleNama(event.target.value)}/>
                         </Form.Group>
                         <Form.Group>
                             <Form.Label className="fw-bold">Password</Form.Label>
-                            <Form.Control type="password" placeholder="*****" required onChange={(event) => handlePassword(event.target.value)}/>
+                            <Form.Control type="password" placeholder="*****" minLength="5" required onChange={(event) => handlePassword(event.target.value)}/>
                         </Form.Group>
                         <Button variant="success" className="mt-3 w-100" type="submit">Registrasi</Button>
                     </Form>

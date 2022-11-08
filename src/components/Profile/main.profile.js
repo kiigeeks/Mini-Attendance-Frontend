@@ -50,16 +50,16 @@ const Edit = ({ title }) => {
                 <div className="bg-white p-4 mt-3 rounded-3" style={formStyle}>
                     <Form className='d-flex flex-column gap-3' onSubmit={updateProfile}>
                         <Form.Group>
-                            <Form.Label className="fw-bold">Nama Lengkap</Form.Label>
-                            <Form.Control type="text" placeholder="Masukkan Nama Lengkap" required onChange={(event) => setNama(event.target.value)} defaultValue={localStorage.getItem("nama")}/>
+                            <Form.Label className="fw-bold">Nama</Form.Label>
+                            <Form.Control type="text" placeholder="Masukkan Nama Anda" minLength="3" required onChange={(event) => setNama(event.target.value)} defaultValue={localStorage.getItem("nama")}/>
                         </Form.Group>
                         <Form.Group>
                             <Form.Label className="fw-bold">Password Baru</Form.Label>
-                            <Form.Control type="password" placeholder="*****" required onChange={(event) => setPasswordBaru(event.target.value)}/>
+                            <Form.Control type="password" placeholder="*****" minLength="5" required onChange={(event) => setPasswordBaru(event.target.value)}/>
                         </Form.Group>
                         <Form.Group>
                             <Form.Label className="fw-bold">Password Lama</Form.Label>
-                            <Form.Control type="password" placeholder="*****" required onChange={(event) => setPassword(event.target.value)}/>
+                            <Form.Control type="password" placeholder="*****" minLength="5" required onChange={(event) => setPassword(event.target.value)}/>
                             <Form.Text className='text-muted'>*Setelah memasukkan Password Lama, Anda harus Login Kembali</Form.Text>
                         </Form.Group>
                         <Button variant="success" className="mt-4 w-100" type='submit'>Simpan</Button>

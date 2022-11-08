@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react'
-import { Container, Badge, Table } from 'react-bootstrap'
+import { Container, Badge } from 'react-bootstrap'
+import BootstrapTable from 'react-bootstrap-table-next'
+import paginationFactory from 'react-bootstrap-table2-paginator'
 import Navbar from './navbar.dashboard'
 import { handleLogout } from '../Utilities/logout'
 import { FetchData, SendData } from '../Utilities/customAxios'
@@ -19,9 +21,51 @@ const Dashboard = ({title}) => {
         if(!localStorage.getItem("nama") && !localStorage.getItem("nip")){
             navigate('/login')
         }
-        FetchData("GET", "absensi").then((res) => setAbsensiList(res.result))
+        FetchData("GET", `absensi/${localStorage.getItem("nip")}`).then((res) => setAbsensiList(res.result))
     }, [absenNotif])
 
+    //dipetakan untuk convert timestamp
+    const destructData = listAbsen => {
+        const items = []
+        listAbsen.map((absensi, i) => {
+            const {users_nip, status, createdAt} = absensi   
+            items.push({ 
+                id: i,
+                no: i+1, 
+                users_nip: users_nip,
+                status: status,
+                time: FormatTime(createdAt)
+            })    
+        })
+        return items
+    }
+    const dataList = destructData(absensiList)
+    const columns = [
+        {
+            dataField: "no",
+            text: "No",
+            sort: true
+        },
+        {
+            dataField: "users_nip",
+            text: "NIP",
+            sort: true
+        },
+        {
+            dataField: "status",
+            text: "Status",
+            sort: true
+        },
+        {
+            dataField: "time",
+            text: "Waktu Absen",
+            sort: true
+        }
+    ]
+    const defaultSorted = [{
+        dataField: 'name',
+        order: 'desc'
+    }]
     const handleToast = () => setShowToast(!showToast)
     const absen = (params) => {
         const requestData = {
@@ -62,31 +106,14 @@ const Dashboard = ({title}) => {
                     </div>
                 </div>
                 <h2 className="display-6 text-center mb-4">History Absensi</h2>
-                <Table striped className='text-center'>
-                    <thead>
-                        <tr>
-                        <th>No</th>
-                        <th>NIP</th>
-                        <th>Status</th>
-                        <th>Waktu Absen</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {
-                            absensiList.map((absensi, i) => {
-                                const {users_nip, status, createdAt} = absensi       
-                                return (
-                                    <tr key={i}>
-                                        <td>{i+1}</td>
-                                        <td>{users_nip}</td>
-                                        <td>{status}</td>
-                                        <td>{FormatTime(createdAt)}</td>
-                                    </tr>
-                                )
-                            })
-                        }
-                    </tbody>
-                </Table>
+                <BootstrapTable
+                    bootstrap4
+                    keyField="id"
+                    data={dataList}
+                    columns={columns}
+                    defaultSorted={defaultSorted}
+                    pagination={paginationFactory({ sizePerPage: 5 })}
+                />
                 <footer className="pt-4 my-md-5 pt-md-5 border-top">
                     <div className="row">
                         <div className="text-center">
